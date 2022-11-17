@@ -161,7 +161,10 @@ const run = async () => {
 
 		core.info('Done')
 	} catch (err) {
-		await github.updateDeployment('failure')
+		if (GITHUB_DEPLOYMENT) {
+			await github.updateDeployment('failure')
+		}
+
 		core.setFailed(err.message)
 	}
 }
