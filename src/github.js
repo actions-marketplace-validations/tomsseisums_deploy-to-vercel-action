@@ -1,3 +1,4 @@
+const core = require('@actions/core')
 const github = require('@actions/github')
 
 const {
@@ -37,6 +38,7 @@ const init = () => {
 	const updateDeployment = async (status, url) => {
 		if (!deploymentId) return
 
+		const autoInactive = GITHUB_DEPLOYMENT_AUTO_INACTIVE || true
 		const deploymentStatus = await client.repos.createDeploymentStatus({
 			owner: USER,
 			repo: REPOSITORY,
@@ -45,8 +47,10 @@ const init = () => {
 			log_url: LOG_URL,
 			environment_url: url || LOG_URL,
 			description: 'Starting deployment to Vercel',
-			auto_inactive: GITHUB_DEPLOYMENT_AUTO_INACTIVE || true
+			auto_inactive: autoInactive
 		})
+
+		core.info(`auto_inactive = ${ autoInactive }`)
 
 		return deploymentStatus.data
 	}
