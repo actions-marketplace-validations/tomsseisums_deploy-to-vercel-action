@@ -16092,7 +16092,7 @@ const init = () => {
 			log_url: LOG_URL,
 			environment_url: url || LOG_URL,
 			description: 'Starting deployment to Vercel',
-			auto_inactive: GITHUB_DEPLOYMENT_AUTO_INACTIVE || true
+			auto_inactive: GITHUB_DEPLOYMENT_AUTO_INACTIVE
 		})
 
 		return deploymentStatus.data
@@ -16706,7 +16706,10 @@ const run = async () => {
 
 		core.info('Done')
 	} catch (err) {
-		await github.updateDeployment('failure')
+		if (GITHUB_DEPLOYMENT) {
+			await github.updateDeployment('failure')
+		}
+
 		core.setFailed(err.message)
 	}
 }
