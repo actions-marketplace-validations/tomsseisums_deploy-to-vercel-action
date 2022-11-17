@@ -9,6 +9,7 @@ const {
 	REF,
 	LOG_URL,
 	PR_LABELS,
+	GITHUB_DEPLOYMENT_AUTO_INACTIVE,
 	GITHUB_DEPLOYMENT_ENV
 } = require('./config')
 
@@ -43,7 +44,8 @@ const init = () => {
 			state: status,
 			log_url: LOG_URL,
 			environment_url: url || LOG_URL,
-			description: 'Starting deployment to Vercel'
+			description: 'Starting deployment to Vercel',
+			auto_inactive: GITHUB_DEPLOYMENT_AUTO_INACTIVE || true
 		})
 
 		return deploymentStatus.data

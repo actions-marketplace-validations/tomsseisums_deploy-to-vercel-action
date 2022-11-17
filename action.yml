@@ -1,6 +1,6 @@
-name: 'Deploy to Vercel Action'
+name: 'Vercel Deployment Action'
 description: 'Deploy your project to Vercel using GitHub Actions. Supports PR previews and GitHub deployments.'
-author: 'BetaHuhn'
+author: 'tomsseisums'
 
 inputs:
   GITHUB_TOKEN:
@@ -26,6 +26,10 @@ inputs:
   GITHUB_DEPLOYMENT:
     description: |
       Create a deployment on GitHub (default: true).
+    required: false
+  GITHUB_DEPLOYMENT_AUTO_INACTIVE:
+    description: |
+      Should the previous deployments to this environment be automatically inactivated (default: true).
     required: false
   CREATE_COMMENT:
     description: |

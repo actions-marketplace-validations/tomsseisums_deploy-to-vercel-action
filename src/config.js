@@ -32,6 +32,11 @@ const context = {
 		type: 'boolean',
 		default: true
 	}),
+	GITHUB_DEPLOYMENT_AUTO_INACTIVE: parser.getInput({
+		key: 'GITHUB_DEPLOYMENT_AUTO_INACTIVE',
+		type: 'boolean',
+		default: true
+	}),
 	CREATE_COMMENT: parser.getInput({
 		key: 'CREATE_COMMENT',
 		type: 'boolean',
